@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import Lottie
 
 class ViewController: UIViewController {
 
-    
+    var viewAnimation : AnimationView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,16 +29,31 @@ class ViewController: UIViewController {
     
     @objc func segmentedValueChanged(_ sender:UISegmentedControl!)
         {
+            viewAnimation?.removeFromSuperview()
+            
             if sender.selectedSegmentIndex == 0 {
-                let fish = LoaderView(animation:"fish")
-                fish.frame.size = CGSize(width: 400, height: 400)
-                fish.center = self.view.center
-                view.addSubview(fish)
+                let circle = LoaderView(animation:"circle")
+                circle.animationView?.frame.size = CGSize(width: 400, height: 400)
+                circle.animationView?.center = self.view.center
+                viewAnimation = circle.animationView!
+                view.addSubview(viewAnimation!)
                 view.backgroundColor = .cyan
                 print("0")
             }else if sender.selectedSegmentIndex == 1 {
+                let circle3d = LoaderView(animation:"circles3d")
+                circle3d.animationView?.frame.size = CGSize(width: 400, height: 400)
+                circle3d.animationView?.center = self.view.center
+                viewAnimation = circle3d.animationView!
+                view.addSubview(viewAnimation!)
+                view.backgroundColor = .red
                 print("1")
             }else{
+                let speed = LoaderView(animation:"speed")
+                speed.animationView?.frame.size = CGSize(width: 400, height: 400)
+                speed.animationView?.center = self.view.center
+                viewAnimation = speed.animationView!
+                view.addSubview(viewAnimation!)
+                view.backgroundColor = .green
                 print("2")
             }
         }
